@@ -56,9 +56,12 @@ def is_later(a: str, b: str) -> bool:
     return True
 
 @route
-def index(state: State) -> Page:    
+def index(state: State) -> Page:
+    events = ""
+    for event in state.calender:
+        events = events + event.title + " " + event.date + " " + event.location + " " + event.description + ", "
     return Page(state, [
-        state.calender,
+        events[:-2],
         Button("Upload Poster", "upload_poster")
     ])
 
