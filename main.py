@@ -27,7 +27,7 @@ class Event:
 
 @dataclass
 class State:
-    events: list[Event]
+    events: list[Event] 
     bookmarks: list[int]
     calender: list[Event]
     pending_event: Event = None
@@ -110,4 +110,4 @@ def save_event(state: State, event: Event) -> Page:
     state.events.append(event)
     return index(state)
     
-start_server(State())
+start_server(State([],[],[]))
