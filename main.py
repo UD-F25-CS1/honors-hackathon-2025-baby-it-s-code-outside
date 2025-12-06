@@ -31,7 +31,6 @@ class State:
     bookmarks: list[int]
     calender: list[Event]
     pending_event: Event = None
-    pending_text: str
 
 @route
 def index(state: State) -> Page:
