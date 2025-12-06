@@ -129,12 +129,12 @@ def preview_event(state: State) -> Page:
 
 @route
 def save_event_corrected(state: State, title:str, date:str, location:str, description:str) -> Page:
-    state.pending_event = Event(title, date, location, description)
+    new_event = Event(title, date, location, description)
     num = 0
     for event in state.calender:
-        if is_later(event.date, state.pending_event.date):
+        if is_later(event.date, new_event.date):
             num += 1
-    state.calender.insert(num, state.pending_event)
+    state.calender.insert(num, new_event)
     return index(state)
 
 @route
