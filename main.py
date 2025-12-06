@@ -107,8 +107,8 @@ def save_event_corrected(state: State, title, date, location, description) -> Pa
     return index(state)
 
 @route
-def save_event(state: State, event: Event) -> Page:
-    state.events.append(event)
+def save_event(state: State) -> Page:
+    state.events.append(state.pending_event)
     return index(state)
     
 start_server(State([],[],[], None))
