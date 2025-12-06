@@ -61,6 +61,7 @@ def index(state: State) -> Page:
     for event in state.calender:
         events.append("Title: " + event.title + ", Date: " + event.date + ", Location: " + event.location + ", Description: " + event.description)
     return Page(state, [
+        Header("Calendar: "),
         NumberedList(events),
         Button("Upload Details", "upload_poster")
     ])
