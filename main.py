@@ -34,7 +34,9 @@ class State:
 
 @route
 def index(state: State) -> Page:
-    return Page(state, ["Hello ___!"])
+    return Page(state, [
+        Button("Upload Poster", "upload_poster")
+    ])
 
 @route
 def upload_poster(state: State) -> Page:
