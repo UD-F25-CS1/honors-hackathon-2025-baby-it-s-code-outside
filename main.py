@@ -67,16 +67,17 @@ def parse_event_text(text:str) -> Event:
 
 @route
 def extract_event_info(state:State, event_details:str) -> Page:
+    conversation = []
     prompt = (
         "You are reading an event poster"
         "Extract ONLY the following information in plain text from the given text in the following format"
         "Title:\nDate:\nLocation:\nDescription:"
         "Ensure that the date extracted is in MM/DD format"
     )
-    
-    result_text = call_gemini(prompt + event_details)
+    conversation.append(LLMMessage("user", prompt + event))
 
-    event = parse_event_text(result_text)
+    result_text = call_gemini(conversation)
+    event = parse_event_text(result_text.content)
 
     state.pending_event = event
     return Page(
