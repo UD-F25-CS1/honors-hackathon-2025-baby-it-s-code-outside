@@ -1,8 +1,11 @@
 from bakery import assert_equal
 from drafter import *
 from dataclasses import dataclass
+from drafter.llm import *
 from drafter.llm import gemini_vision
 from meta import *
+
+set_gemini_server("https://bitter-pine-ee21drafter-gemini-proxy.subibask.workers.dev")
 
 # hide_debug_information()
 # set_website_framed(False)
