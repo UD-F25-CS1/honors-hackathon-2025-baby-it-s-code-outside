@@ -59,7 +59,7 @@ def is_later(a: str, b: str) -> bool:
 def index(state: State) -> Page:
     events = []
     for event in state.calender:
-        events.append(event.title + ", " + event.date + ", " + event.location + ", " + event.description)
+        events.append("Title: " + event.title + ", Date: " + event.date + ", Location: " + event.location + ", Description: " + event.description)
     return Page(state, [
         NumberedList(events),
         Button("Upload Details", "upload_poster")
