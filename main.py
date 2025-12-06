@@ -30,7 +30,7 @@ class State:
     events: list[Event] 
     bookmarks: list[int]
     calender: list[Event]
-    pending_event: Event = None
+    pending_event: Event
 
 @route
 def index(state: State) -> Page:
@@ -110,4 +110,4 @@ def save_event(state: State, event: Event) -> Page:
     state.events.append(event)
     return index(state)
     
-start_server(State([],[],[]))
+start_server(State([],[],[], None))
