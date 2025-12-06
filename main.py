@@ -2,7 +2,7 @@ from bakery import assert_equal
 from drafter import *
 from dataclasses import dataclass
 from drafter.llm import *
-from drafter.llm import gemini_vision
+#from drafter.llm import gemini_vision
 from meta import *
 
 set_gemini_server("https://bitter-pine-ee21drafter-gemini-proxy.subibask.workers.dev")
@@ -75,7 +75,7 @@ def extract_event_info(state:State, poster:bytes) -> Page:
         "Title:\nDate:\nLocation:\nDescription:"
     )
     
-    result_text = gemini_vision(
+    result_text = call_gemini(
         image=poster,
         prompt=prompt)
 
