@@ -55,8 +55,6 @@ def is_later(a: str, b: str) -> bool:
         return False
     return True
 
-    
-
 @route
 def index(state: State) -> Page:    
     return Page(state, [
