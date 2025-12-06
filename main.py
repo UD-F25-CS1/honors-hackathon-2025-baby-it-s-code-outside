@@ -93,15 +93,15 @@ def extract_event_info(state:State, event_details:str) -> Page:
 def preview_event(state: State) -> Page:
     return Page(state, content=[
         Header("Event Details:"),
-        TextBox("title", event.title),
-        TextBox("date", event.date),
-        TextBox("location", event.location),
-        TextBox("description", event.description),
+        TextBox("title", state.pending_event.title),
+        TextBox("date", state.pending_event.date),
+        TextBox("location", state.pending_event.location),
+        TextBox("description", state.pending_event.description),
         Button("Save Information", "save_event_corrected")
     ])
 
 @route
-def save_event_corrected(state: State, title, date, location, description) -> Page:
+def save_event_corrected(state: State, title:str, date:str, location:str, description:str) -> Page:
     event = Event(title, date, location, description)
     state.events.append(event)
     return index(state)
