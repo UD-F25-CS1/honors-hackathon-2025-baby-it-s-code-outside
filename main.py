@@ -5,13 +5,13 @@ from drafter.llm import *
 
 set_gemini_server("https://bitter-pine-ee21drafter-gemini-proxy.subibask.workers.dev")
 
-# hide_debug_information()
-# set_website_framed(False)
-set_website_title("Your Drafter Website")
+hide_debug_information()
+set_website_framed(False)
+set_website_title("Redding Event Tracker!")
 set_site_information(
-    "author",
+    "Aahna Sasson and Subiksha Baskaran",
     """
-Your description can go here.
+Redding Event Tracker!
 """,
     [],
     [],
@@ -129,7 +129,7 @@ def preview_event(state: State) -> Page:
 
 @route
 def save_event_corrected(state: State, title:str, date:str, location:str, description:str) -> Page:
-    event = Event(title, date, location, description)
+    state.pending_event = Event(title, date, location, description)
     num = 0
     for event in state.calender:
         if is_later(event.date, state.pending_event.date):
