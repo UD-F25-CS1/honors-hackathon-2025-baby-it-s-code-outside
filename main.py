@@ -74,7 +74,7 @@ def extract_event_info(state:State, event_details:str) -> Page:
         "Title:\nDate:\nLocation:\nDescription:"
         "Ensure that the date extracted is in MM/DD format"
     )
-    conversation.append(LLMMessage("user", prompt + event))
+    conversation.append(LLMMessage("user", prompt + event_details))
 
     result_text = call_gemini(conversation)
     event = parse_event_text(result_text.content)
