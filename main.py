@@ -139,11 +139,11 @@ def save_event_corrected(state: State, title:str, date:str, location:str, descri
 
 @route
 def save_event(state: State) -> Page:
-    index = 0
+    num = 0
     for event in state.calender:
         if is_later(event.date, state.pending_event.date):
-            index += 1
-    state.calender.insert(index, state.pending_event)
+            num += 1
+    state.calender.insert(num, state.pending_event)
     return index(state)
     
 start_server(State([],[],[], None))
