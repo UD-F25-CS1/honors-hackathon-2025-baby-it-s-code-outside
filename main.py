@@ -32,9 +32,35 @@ class State:
     calender: list[Event]
     pending_event: Event
 
+def is_later(a: str, b: str) -> bool:
+    if a[0] == 0:
+        month_a = int(a[1])
+    else:
+        month_a = int(a[:2])
+    if b[0] == 0:
+        month_b = int(b[1])
+    else:
+        month_b = int(b[:2])
+    if a[3] == 0:
+        day_a = int(a[4])
+    else:
+        day_a = int(a[3:])
+    if b[3] == 0:
+        day_b = int(b[4])
+    else:
+        day_b = int(b[3:])
+    if month_a > month_b:
+        return False
+    if month_a == month_b and day_a > day_b:
+        return False
+    return True
+
+    
+
 @route
-def index(state: State) -> Page:
+def index(state: State) -> Page:    
     return Page(state, [
+        calender,
         Button("Upload Poster", "upload_poster")
     ])
 
@@ -103,12 +129,20 @@ def preview_event(state: State) -> Page:
 @route
 def save_event_corrected(state: State, title:str, date:str, location:str, description:str) -> Page:
     event = Event(title, date, location, description)
-    state.events.append(event)
+    index = 0
+    for event in state.calender:
+        if is_later(event.date, state.pending_event.date):
+            index += 1
+    state.calender.insert(index, state.pending_event)
     return index(state)
 
 @route
 def save_event(state: State) -> Page:
-    state.events.append(state.pending_event)
+    index = 0
+    for event in state.calender:
+        if is_later(event.date, state.pending_event.date):
+            index += 1
+    state.calender.insert(index, state.pending_event)
     return index(state)
     
 start_server(State([],[],[], None))
