@@ -60,7 +60,7 @@ def is_later(a: str, b: str) -> bool:
 @route
 def index(state: State) -> Page:    
     return Page(state, [
-        calender,
+        state.calender,
         Button("Upload Poster", "upload_poster")
     ])
 
