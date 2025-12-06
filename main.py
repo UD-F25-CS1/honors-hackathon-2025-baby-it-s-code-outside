@@ -43,7 +43,7 @@ def upload_poster(state: State) -> Page:
     return Page(
         state, content = [
             Header("Upload Event Poster!"),
-            FileUpload("poster"),
+            TextBox("Insert Copied Text Here:"),
             Button("Create Event!", "extract_event_info"),
         ])
 
@@ -69,14 +69,12 @@ def parse_event_text(text:str) -> Event:
 def extract_event_info(state:State, poster:bytes) -> Page:
     prompt = (
         "You are reading an event poster"
-        "Extract ONLY the following information in plain text"
-        "Ensure that the date extracted is in MM/DD format"
+        "Extract ONLY the following information in plain text from the given text in the following format"
         "Title:\nDate:\nLocation:\nDescription:"
+        "Ensure that the date extracted is in MM/DD format"
     )
     
-    result_text = call_gemini(
-        image=poster,
-        prompt=prompt)
+    result_text = call_gemini(prompt=prompt)
 
     event = parse_event_text(result_text)
 
